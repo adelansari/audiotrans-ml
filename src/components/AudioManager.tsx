@@ -547,6 +547,9 @@ function UrlModal(props: {
             content={
                 <>
                     {"Enter the URL of the audio file you want to load."}
+                    <br />
+                    {"Example: https://somewebsite.com/.../something.mp3"}
+
                     <UrlInput onChange={onChange} value={url} />
                 </>
             }
