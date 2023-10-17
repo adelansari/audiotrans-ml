@@ -7,9 +7,9 @@ function App() {
     const transcriber = useTranscriber();
 
     return (
-        <div>
-            <Theme />
-            <div className='flex justify-center flex-col items-center min-h-screen dark:bg-gray-900'>
+        <div className=' dark:bg-gray-900'>
+            <div className='flex justify-center flex-col items-center min-h-screen'>
+                <Theme />
                 <div className='container flex flex-col justify-center items-center mt-2'>
                     <div className='  dark:text-white'>
                         <h1 className='text-5xl font-extrabold tracking-tight dark:text-white text-slate-900 sm:text-7xl text-center'>
@@ -24,7 +24,7 @@ function App() {
                     <Transcript transcribedData={transcriber.output} />
                 </div>
 
-                <div className='relative bottom-4 dark:text-white font-bold'>
+                <div className='relative mt-auto bottom-4 dark:text-white font-bold'>
                     Github{" "}
                     <a
                         className='text-orange-400'

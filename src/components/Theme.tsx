@@ -12,7 +12,7 @@ export default function Theme() {
     }, [darkMode]);
 
     return (
-        <div className=' lg:right-10 sm:center-10 md:center-10 mt-2'>
+        <div className='py-3 px-2 mb-auto'>
             <button
                 onClick={() => {
                     setDarkMode(!darkMode);
