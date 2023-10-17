@@ -10,10 +10,10 @@ function App() {
         <div className='flex justify-center items-center min-h-screen dark:bg-gray-900 dark:text-white'>
             <Theme />
             <div className='container flex flex-col justify-center items-center'>
-                <h1 className='text-5xl font-extrabold tracking-tight text-slate-900 sm:text-7xl text-center'>
+                <h1 className='text-5xl font-extrabold tracking-tight dark:text-white text-slate-900 sm:text-7xl text-center'>
                     Audio<span className='text-orange-400 bold'>Trans</span>
                 </h1>
-                <h2 className='mt-3 mb-5 px-4 text-center text-1xl font-semibold tracking-tight text-slate-900 sm:text-2xl pb-4'>
+                <h2 className='mt-3 mb-5 px-4 text-center text-1xl font-semibold tracking-tight dark:text-white text-slate-900 sm:text-2xl pb-4'>
                     Speach recognition & transcription using ML.
                 </h2>
                 <AudioManager transcriber={transcriber} />

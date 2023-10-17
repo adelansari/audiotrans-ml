@@ -14,7 +14,7 @@ export function TranscribeButton(props: Props): JSX.Element {
                 }
             }}
             disabled={isTranscribing}
-            className='text-white bg-orange-300 hover:bg-orange-400 focus:ring-4 focus:ring-orange-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-orange-400 dark:hover:bg-orange-600 dark:focus:ring-orange-400 inline-flex items-center'
+            className='text-black bg-orange-300 hover:bg-orange-400 focus:ring-4 focus:ring-orange-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-orange-400 dark:hover:bg-orange-600 dark:focus:ring-orange-400 inline-flex items-center'
         >
             {isModelLoading ? (
                 <Spinner text={"Loading model..."} />

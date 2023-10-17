@@ -12,13 +12,19 @@ export default function Theme() {
     }, [darkMode]);
 
     return (
-        <button
-            onClick={() => {
-                setDarkMode(!darkMode);
-            }}
-            className='absolute right-10 top-10 dark:bg-white dark:text-black bg-black text-white px-5 py-3 rounded hover:bg-stone-700'
-        >
-            {darkMode ? "Light" : "Dark"} Mode
-        </button>
+        <div className='absolute top-10 lg:right-10 sm:center-10 md:center-10'>
+            <button
+                onClick={() => {
+                    setDarkMode(!darkMode);
+                }}
+                className='dark:bg-stone-300 dark:text-black bg-gray-800 text-white px-5 py-3 rounded hover:bg-stone-700 dark:hover:bg-white'
+            >
+                {darkMode ? (
+                    <i className='fa-regular fa-sun'></i>
+                ) : (
+                    <i className='fa-solid fa-moon'></i>
+                )}{" "}
+            </button>
+        </div>
     );
 }
