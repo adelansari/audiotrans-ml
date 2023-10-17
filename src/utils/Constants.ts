@@ -23,8 +23,9 @@ function mobileTabletCheck() {
 const isMobileOrTablet = mobileTabletCheck();
 export default {
     SAMPLING_RATE: 16000,
-    DEFAULT_AUDIO_URL: `https://huggingface.co/datasets/Xenova/transformers.js-docs/resolve/main/${isMobileOrTablet ? "jfk" : "ted_60"
-        }.wav`,
+    // DEFAULT_AUDIO_URL: `https://huggingface.co/datasets/Xenova/transformers.js-docs/resolve/main/${isMobileOrTablet ? "jfk" : "ted_60"
+    //     }.wav`,
+    DEFAULT_AUDIO_URL: "../../AudioSample/default.mp3_ywr3ahjkcgo_963496a4745d59dced6321cec26ea6ff_2879786.mp3",
     DEFAULT_MODEL: "tiny",
     DEFAULT_SUBTASK: "transcribe",
     DEFAULT_LANGUAGE: "english",
