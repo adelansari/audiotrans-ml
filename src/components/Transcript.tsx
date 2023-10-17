@@ -24,21 +24,27 @@ export default function Transcript({ transcribedData }: Props) {
         // Revoke the URL to free up memory
         URL.revokeObjectURL(url);
     };
-    // A function to export the transcript as a TXT file
-    const exportTXT = () => {
-        // Get the chunks of transcribed data or an empty array
-        let chunks = transcribedData?.chunks ?? [];
-        // Join the text of each chunk and trim any whitespace
-        let text = chunks
+
+    // A function to disolay full transcript
+    const getFullTranscript = () => {
+        const chunks = transcribedData?.chunks ?? [];
+        // joining the text of each chunk and trim any whitespace
+        const text = chunks
             .map((chunk) => chunk.text)
             .join("")
             .trim();
+        return text;
+    };
 
+    // A function to export the transcript as a TXT file
+    const exportTXT = () => {
+        const text = getFullTranscript();
         // Create a blob with the text and the MIME type
         const blob = new Blob([text], { type: "text/plain" });
         // Save the blob as transcript.txt
         saveBlob(blob, "transcript.txt");
     };
+
     // A function to export the transcript as a JSON file
     const exportJSON = () => {
         // Stringify the chunks of transcribed data or an empty array with indentation
@@ -72,41 +78,54 @@ export default function Transcript({ transcribedData }: Props) {
     });
 
     return (
-        <div
-            ref={divRef}
-            className='w-full flex flex-col my-2 p-4 max-h-[20rem] overflow-y-auto'
-        >
-            {transcribedData &&
-                transcribedData.chunks.map((chunk, i) => (
-                    <div
-                        key={`${i}-${chunk.text}`}
-                        className='w-full flex flex-row mb-2 bg-white rounded-lg p-4 shadow-xl shadow-black/5 ring-1 ring-slate-700/10 dark:text-black'
-                    >
-                        <div className='mr-5'>
-                            {/* Format and display the timestamp of each chunk */}
-                            {formatAudioTimestamp(chunk.timestamp[0])}
+        <div className=' pt-2 pb-20 '>
+            <div
+                ref={divRef}
+                className='w-full flex flex-col my-2 pr-2 max-h-[20rem] overflow-y-auto'
+            >
+                {transcribedData &&
+                    transcribedData.chunks.map((chunk, i) => (
+                        <div
+                            key={`${i}-${chunk.text}`}
+                            className='w-full flex flex-row mb-2 bg-white rounded-lg p-4 shadow-xl shadow-black/5 ring-1 ring-slate-700/10  dark:bg-gray-700 dark:text-white'
+                        >
+                            <div className='mr-5'>
+                                {/* Format and display the timestamp of each chunk */}
+                                {formatAudioTimestamp(chunk.timestamp[0])}
+                            </div>
+                            {/* Display the text of each chunk */}
+                            {chunk.text}
                         </div>
-                        {/* Display the text of each chunk */}
-                        {chunk.text}
+                    ))}
+            </div>
+
+            <div>
+                {transcribedData && !transcribedData.isBusy && (
+                    <div>
+                        <h1 className='flex justify-center items-center text-xl dark:text-white mb-2 mt-2'>
+                            Full Transcription:
+                        </h1>
+                        <div className='p-4 mb-4 shadow-xl bg-white rounded-lg max-h-[20rem] overflow-y-auto dark:bg-gray-700 dark:text-white'>
+                            {getFullTranscript()}
+                        </div>
+                        <div className='w-full text-right'>
+                            {/* Display buttons to export the transcript as TXT or JSON files */}
+                            <button
+                                onClick={exportTXT}
+                                className='text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-2 dark:bg-indigo-500 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800 inline-flex items-center'
+                            >
+                                Export TXT
+                            </button>
+                            <button
+                                onClick={exportJSON}
+                                className='text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-2 dark:text-black dark:bg-green-400 dark:hover:bg-green-600 dark:focus:ring-green-800 inline-flex items-center'
+                            >
+                                Export JSON
+                            </button>
+                        </div>
                     </div>
-                ))}
-            {transcribedData && !transcribedData.isBusy && (
-                <div className='w-full text-right'>
-                    {/* Display buttons to export the transcript as TXT or JSON files */}
-                    <button
-                        onClick={exportTXT}
-                        className='text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-2 dark:bg-indigo-500 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800 inline-flex items-center'
-                    >
-                        Export TXT
-                    </button>
-                    <button
-                        onClick={exportJSON}
-                        className='text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-2 dark:text-black dark:bg-green-400 dark:hover:bg-green-600 dark:focus:ring-green-800 inline-flex items-center'
-                    >
-                        Export JSON
-                    </button>
-                </div>
-            )}
+                )}
+            </div>
         </div>
     );
 }

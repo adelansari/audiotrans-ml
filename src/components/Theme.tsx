@@ -12,7 +12,7 @@ export default function Theme() {
     }, [darkMode]);
 
     return (
-        <div className='absolute top-10 lg:right-10 sm:center-10 md:center-10'>
+        <div className=' lg:right-10 sm:center-10 md:center-10 mt-2'>
             <button
                 onClick={() => {
                     setDarkMode(!darkMode);
