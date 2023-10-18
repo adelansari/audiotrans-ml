@@ -274,6 +274,11 @@ export function AudioManager(props: { transcriber: Transcriber }) {
                             />
                         </>
                     )}
+                    <VerticalBar />
+                    <SettingsTile
+                        transcriber={props.transcriber}
+                        icon={<SettingsIcon />}
+                    />
                 </div>
                 {
                     <AudioDataBar
@@ -296,12 +301,6 @@ export function AudioManager(props: { transcriber: Transcriber }) {
                             isModelLoading={props.transcriber.isModelLoading}
                             // isAudioLoading ||
                             isTranscribing={props.transcriber.isBusy}
-                        />
-
-                        <SettingsTile
-                            className='absolute right-4'
-                            transcriber={props.transcriber}
-                            icon={<SettingsIcon />}
                         />
                     </div>
                     {props.transcriber.progressItems.length > 0 && (
@@ -479,7 +478,7 @@ function SettingsModal(props: {
 }
 
 function VerticalBar() {
-    return <div className='w-[1px] bg-slate-200'></div>;
+    return <div className='w-[3px] bg-slate-400'></div>;
 }
 
 function AudioDataBar(props: { progress: number }) {
